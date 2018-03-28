@@ -30,6 +30,13 @@ fetchUser =
         |> Cmd.map Msgs.OnFetchUser
 
 
+logoutUser : Cmd Msg
+logoutUser =
+    Http.post (backend ++ "/logout") Http.emptyBody Decode.string
+        |> RemoteData.sendRequest
+        |> Cmd.map Msgs.OnLogout
+
+
 fetchPlayersUrl : String
 fetchPlayersUrl =
     "http://localhost:4000/players"

@@ -3,7 +3,6 @@ module User exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Html.Attributes exposing (class, href)
 import Models exposing (User, Model)
 import Msgs exposing (Msg)
 import RemoteData exposing (WebData)
@@ -22,15 +21,9 @@ loginForm origin = Html.form
                       ]
 
 logoutForm: String -> Html Msg
-logoutForm origin = Html.form
-                      [ action (origin ++ "/logout"), method "post" ]
-                      [ input
-                        [  type_ "submit"
-                         , class "btn btn-outline-success my-2 my-sm-0", type_ "submit"
-                         ,  value "Logout"
-                        ]
-                        [button [class "btn btn-outline-success my-2 my-sm-0", type_ "submit" ] [ text "Logout" ]]
-                      ]
+logoutForm origin =
+                       button [class "btn btn-outline-success my-2 my-sm-0", onClick Msgs.Logout] [ text "Logout" ]
+
 
 userArea: String -> User -> Html Msg
 userArea origin user =

@@ -1,6 +1,6 @@
 module Update exposing (..)
 
-import Commands exposing (savePlayerCmd)
+import Commands exposing (savePlayerCmd, fetchUser)
 import Models exposing (Model, Player)
 import Msgs exposing (Msg)
 import Routing exposing (parseLocation)
@@ -16,6 +16,8 @@ update msg model =
               _ = Debug.log (toString response)
             in
             ( { model | players = response }, Cmd.none )
+
+        Msgs.FetchUser  -> (model, Commands.fetchUser)
 
         Msgs.OnFetchUser response ->
             let
@@ -44,6 +46,8 @@ update msg model =
             ( model, Cmd.none )
 
         Msgs.Login -> (model,  Navigation.load "/service/login")
+        Msgs.Logout  -> (model,  Commands.logoutUser)
+        Msgs.OnLogout _ -> (model,  fetchUser)
 
 
 updatePlayer : Model -> Player -> Model

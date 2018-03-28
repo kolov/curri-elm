@@ -2,11 +2,9 @@ module MainView exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (..)
 import Models exposing (Model, PlayerId)
 import Models exposing (Model)
 import Msgs exposing (Msg)
-import Navigation exposing (Location)
 import View exposing( page)
 import User exposing( viewUser)
 
