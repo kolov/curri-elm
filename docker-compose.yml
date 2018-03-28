@@ -1,0 +1,27 @@
+version: '2.0'
+services:
+
+
+  concierge:
+    image: registry.gitlab.com/kolov/concierge:master
+    depends_on:
+      - service-users
+    environment:
+      - OAUTH2_GOOGLE_CLIENT_CLIENTID=${OAUTH2_GOOGLE_CLIENT_CLIENTID}
+      - OAUTH2_GOOGLE_CLIENT_SECRET=${OAUTH2_GOOGLE_CLIENT_SECRET}
+      - OAUTH2_FACEBOOK_CLIENT_CLIENTID=1
+      - OAUTH2_FACEBOOK_CLIENT_CLIENTSECRET=1
+    ports:
+      - "8080:9000"
+
+  service-users:
+    image: registry.gitlab.com/kolov/curri-users:master
+    environment:
+      - MONGO_USERS_SERVICE_HOST=mongo-service-users
+    depends_on:
+      - mongo-service-users
+
+  mongo-service-users:
+    image: mongo:3.0
+    ports:
+      - "27017"
