@@ -6,18 +6,18 @@ import Html.Events exposing (..)
 import Models exposing (User, Model)
 import Msgs exposing (Msg)
 import RemoteData exposing (WebData)
-
+import Base64 exposing(..)
 
 
 loginForm: String -> Html Msg
 loginForm origin = Html.form
-                      [ action (origin ++ "/login/google/aHR0cDovL2N1cnJpLnhpcC5pbzo4MDAx"), method "get" ]
+                      [ action (origin ++ "/login/google/" ++  Base64.encode(origin) ), method "get" ]
                       [ input
                         [  type_ "submit"
                          , class "btn btn-outline-success my-2 my-sm-0", type_ "submit"
                          ,  value "Login"
                         ]
-                        [button [class "btn btn-outline-success my-2 my-sm-0", type_ "submit" ] [ text "Login" ]]
+                        []
                       ]
 
 logoutForm: String -> Html Msg
