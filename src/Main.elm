@@ -16,7 +16,7 @@ init location =
             Routing.parseLocation location
         _ = Debug.log (toString currentRoute)
     in
-        ( initialModel currentRoute, fetchInitialData )
+        ( initialModel currentRoute location.origin, fetchInitialData )
 
 
 subscriptions : Model -> Sub Msg

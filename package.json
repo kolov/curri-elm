@@ -10,7 +10,7 @@
     "file-loader": "^0.10.0",
     "font-awesome": "4",
     "foreman": "^2.0.0",
-    "jquery": "^1.12.4",
+    "jquery": "3.0.0",
     "json-server": "0.9.5",
     "popper.js": "^1.14.1",
     "url-loader": "^0.5.7",

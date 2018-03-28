@@ -5,6 +5,7 @@ import Models exposing (Model, Player)
 import Msgs exposing (Msg)
 import Routing exposing (parseLocation)
 import RemoteData
+import Navigation exposing (..)
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -34,6 +35,8 @@ update msg model =
 
         Msgs.OnPlayerSave (Err error) ->
             ( model, Cmd.none )
+
+        Msgs.Login -> (model,  Navigation.load "/service/login")
 
 
 updatePlayer : Model -> Player -> Model

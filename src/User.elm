@@ -11,7 +11,7 @@ viewUser: WebData User -> Html Msg
 viewUser response =
     case response of
         RemoteData.NotAsked ->
-            text "XXX"
+            text "?"
 
         RemoteData.Loading ->
             text "Loading..."
@@ -20,4 +20,4 @@ viewUser response =
             text user.id
 
         RemoteData.Failure error ->
-            text "Error"
+            text "RemoteData.Failure"

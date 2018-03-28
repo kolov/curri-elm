@@ -10,7 +10,7 @@ import RemoteData
 import Platform.Cmd exposing (batch)
 
 backend : String
-backend = "http://35.195.180.58"
+backend = ""
 
 fetchInitialData : Cmd Msg
 fetchInitialData =
@@ -61,6 +61,11 @@ savePlayerCmd player =
         |> Http.send Msgs.OnPlayerSave
 
 
+--loginCmd : () -> Cmd Msg
+--loginCmd =
+--    savePlayerRequest player
+--        |> Http.send Msgs.OnPlayerSave
+
 
 -- DECODERS
 
@@ -101,3 +106,5 @@ playerEncoder player =
             ]
     in
         Encode.object attributes
+
+

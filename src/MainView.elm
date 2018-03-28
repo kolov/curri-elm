@@ -2,9 +2,11 @@ module MainView exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (..)
 import Models exposing (Model, PlayerId)
 import Models exposing (Model)
 import Msgs exposing (Msg)
+import Navigation exposing (Location)
 import View exposing( page)
 import User exposing( viewUser)
 
@@ -51,11 +53,37 @@ mainView model =
                           [ text "Disabled" ]
                       ]
                   ]
+--              , div [ class "form-inline my-2 my-lg-0" ]
+--                  [ viewUser model.user
+--                  , button [ class "btn btn-outline-success my-2 my-sm-0", type_ "submit" ]
+--                      [ button [ onClick Msgs.Login ] [ text "Login" ]]
+--
+--
+--
+--
+--                  ]
+
               , div [ class "form-inline my-2 my-lg-0" ]
-                  [ viewUser model.user
-                  , button [ class "btn btn-outline-success my-2 my-sm-0", type_ "submit" ]
-                      [ text "Login" ]
+                  [
+
+
+--                  Html.form [ action "/service/login", method "post"]
+--                                                          , button [] [ text "Submit" ]
+
+                     Html.form [ action   (model.origin ++ "/login/google/aHR0cDovL2N1cnJpLnhpcC5pbzo4MDAx"), method "get" ]
+                      [ input
+                        [  type_ "submit"
+                               ,  value "Login"
+                        ]
+                        [button [class "btn btn-outline-success my-2 my-sm-0", type_ "submit" ] [ text "Login" ]]
+                      ]
+
                   ]
+
+
+
+
+
               ]
           ]
       , div [ class "container" ]

@@ -7,14 +7,16 @@ type alias Model =
     { players : WebData (List Player)
     , route : Route
     , user  : WebData( User)
+    , origin : String
     }
 
 
-initialModel : Route -> Model
-initialModel route =
+initialModel : Route -> String -> Model
+initialModel route origin =
     { players = RemoteData.Loading
     , route = route
     , user  = RemoteData.Loading
+    , origin = origin
     }
 
 
