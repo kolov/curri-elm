@@ -6,14 +6,21 @@ import Msgs exposing (Msg)
 import Routing exposing (parseLocation)
 import RemoteData
 import Navigation exposing (..)
+import Debug exposing (..)
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Msgs.OnFetchPlayers response ->
+            let
+              _ = Debug.log (toString response)
+            in
             ( { model | players = response }, Cmd.none )
 
         Msgs.OnFetchUser response ->
+            let
+              _ = Debug.log (toString response)
+            in
             ( { model | user = response }, Cmd.none )
 
         Msgs.OnLocationChange location ->

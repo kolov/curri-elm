@@ -25,8 +25,16 @@ type alias PlayerId =
 
 
 type alias Identity =
-    { id : PlayerId
-    , name : String
+    {  sub: String
+       ,email: String
+       ,familyName: Maybe String
+       ,gender: Maybe String
+       ,givenName: Maybe String
+       ,locale: Maybe String
+       ,name: Maybe String
+       ,picture: Maybe String
+       ,profile: Maybe String
+
     }
 
 

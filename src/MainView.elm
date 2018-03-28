@@ -11,6 +11,8 @@ import View exposing( page)
 import User exposing( viewUser)
 
 
+
+
 mainView : Model -> Html Msg
 mainView model =
   div []
@@ -66,17 +68,11 @@ mainView model =
               , div [ class "form-inline my-2 my-lg-0" ]
                   [
 
-
+                   viewUser model.origin model.user
 --                  Html.form [ action "/service/login", method "post"]
 --                                                          , button [] [ text "Submit" ]
 
-                     Html.form [ action   (model.origin ++ "/login/google/aHR0cDovL2N1cnJpLnhpcC5pbzo4MDAx"), method "get" ]
-                      [ input
-                        [  type_ "submit"
-                               ,  value "Login"
-                        ]
-                        [button [class "btn btn-outline-success my-2 my-sm-0", type_ "submit" ] [ text "Login" ]]
-                      ]
+
 
                   ]
 

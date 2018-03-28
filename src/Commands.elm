@@ -35,8 +35,6 @@ fetchPlayersUrl =
     "http://localhost:4000/players"
 
 
-
-
 savePlayerUrl : PlayerId -> String
 savePlayerUrl playerId =
     "http://localhost:4000/players/" ++ playerId
@@ -86,8 +84,17 @@ playerDecoder =
 identityDecoder : Decode.Decoder Identity
 identityDecoder =
     decode Identity
-        |> required "id" Decode.string
-        |> required "name" Decode.string
+        |> required "sub" Decode.string
+        |> required "email" Decode.string
+        |> optional "familyName" (Decode.map Just Decode.string) Nothing
+        |> optional "gender" (Decode.map Just Decode.string) Nothing
+        |> optional "givenName" (Decode.map Just Decode.string) Nothing
+        |> optional "locale" (Decode.map Just Decode.string) Nothing
+        |> optional "name" (Decode.map Just Decode.string) Nothing
+        |> optional "picture" (Decode.map Just Decode.string) Nothing
+        |> optional "profile" (Decode.map Just Decode.string) Nothing
+
+
 
 userDecoder : Decode.Decoder User
 userDecoder =
