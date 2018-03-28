@@ -21,6 +21,7 @@ job-build-node:
   image: trion/ng-cli:1.5.0
   script:
     - yarn
+    - npx webpack
     - ls -al
   only:
     - master
