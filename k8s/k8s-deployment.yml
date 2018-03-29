@@ -12,6 +12,9 @@ spec:
       containers:
       - name: curri-elm
         image: %REGISTRY%/%APP_NAME%:%VERSION%
+        resources:
+          requests:
+            cpu: 400m
         ports:
         - containerPort: 80
       imagePullSecrets:
