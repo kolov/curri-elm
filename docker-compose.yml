@@ -1,11 +1,11 @@
 version: '2.0'
 services:
 
-
   concierge:
     image: registry.gitlab.com/kolov/concierge:master
     depends_on:
       - service-users
+      - service-docs
     environment:
       - OAUTH2_GOOGLE_CLIENT_CLIENTID=${OAUTH2_GOOGLE_CLIENT_CLIENTID}
       - OAUTH2_GOOGLE_CLIENT_SECRET=${OAUTH2_GOOGLE_CLIENT_SECRET}
@@ -17,11 +17,23 @@ services:
   service-users:
     image: registry.gitlab.com/kolov/curri-users:master
     environment:
-      - MONGO_USERS_SERVICE_HOST=mongo-service-users
+      - MONGODB_HOST=mongo-service-users
+    depends_on:
+      - mongo-service-users
+
+  service-docs:
+    image: registry.gitlab.com/kolov/curri-docs:master
+    environment:
+      - MONGODB_HOST=mongo-service-docs
     depends_on:
       - mongo-service-users
 
   mongo-service-users:
+    image: mongo:3.0
+    ports:
+      - "27017"
+
+  mongo-service-docs:
     image: mongo:3.0
     ports:
       - "27017"
