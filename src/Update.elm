@@ -17,7 +17,7 @@ update msg model =
             in
             ( { model | players = response }, Cmd.none )
 
-        Msgs.FetchUser  -> (model, Commands.fetchUser)
+        Msgs.FetchUser  -> (model, (Commands.fetchUser model.flags.endpoints.users))
 
         Msgs.OnFetchUser response ->
             let
@@ -47,7 +47,7 @@ update msg model =
 
         Msgs.Login -> (model,  Navigation.load "/service/login")
         Msgs.Logout  -> (model,  Commands.logoutUser)
-        Msgs.OnLogout _ -> (model,  fetchUser)
+        Msgs.OnLogout _ -> (model,  fetchUser model.flags.endpoints.users)
 
 
 updatePlayer : Model -> Player -> Model

@@ -15,7 +15,7 @@ backend = "http://civi.akolov.com/"
 fetchInitialData : Cmd Msg
 fetchInitialData =
      batch [ --fetchPlayers,
-           fetchUser]
+           fetchUser backend]
 
 fetchPlayers : Cmd Msg
 fetchPlayers =
@@ -24,9 +24,9 @@ fetchPlayers =
         |> Cmd.map Msgs.OnFetchPlayers
 
 
-fetchUser : Cmd Msg
-fetchUser =
-    Http.get (backend ++ "/service/user") userDecoder
+fetchUser : String -> Cmd Msg
+fetchUser origin =
+    Http.get (origin ++ "/service/user") userDecoder
         |> RemoteData.sendRequest
         |> Cmd.map Msgs.OnFetchUser
 
