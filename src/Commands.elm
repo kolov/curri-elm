@@ -5,7 +5,7 @@ import Json.Decode as Decode
 import Json.Decode.Pipeline exposing (decode, required, optional)
 import Json.Encode as Encode
 import Msgs exposing (Msg)
-import Models exposing (Flags, Identity, Player, PlayerId, User)
+import Models exposing (Flags, Identity, Player, PlayerId, User, UserPreferencies)
 import RemoteData
 import Platform.Cmd exposing (batch)
 
@@ -96,13 +96,17 @@ identityDecoder =
         |> optional "picture" (Decode.map Just Decode.string) Nothing
         |> optional "profile" (Decode.map Just Decode.string) Nothing
 
-
+userPrefsDecoder : Decode.Decoder UserPreferencies
+userPrefsDecoder =
+    decode UserPreferencies
+         |> required "acceptsCookies" Decode.bool
 
 userDecoder : Decode.Decoder User
 userDecoder =
     decode User
         |> required "id" Decode.string
         |> optional "identity" (Decode.map Just identityDecoder) Nothing
+        |> required "prefs" userPrefsDecoder
 
 
 playerEncoder : Player -> Encode.Value

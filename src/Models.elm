@@ -1,6 +1,5 @@
 module Models exposing (..)
 
-import Dict exposing (Dict)
 import RemoteData exposing (WebData)
 
 type alias Flags =
@@ -53,9 +52,15 @@ type alias Player =
     , level : Int
     }
 
+type alias UserPreferencies =
+    {
+      acceptsCookies: Bool
+    }
+
 type alias User =
     { id : String
     , identity : Maybe Identity
+    , prefs : UserPreferencies
     }
 
 

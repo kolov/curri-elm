@@ -16,6 +16,7 @@ var remoteEnd = 'http://civi.akolov.com';
 // The third value on embed are the initial values for incoming ports into Elm
 var app = Elm.Main.embed(mountNode,
   {'endpoints': { 'auth': remoteEnd,
-                  'users': remoteEnd + '/service',
+//                  'users': remoteEnd + '/service',
+                  'users': 'http://localhost:8501/service',
                   'players': 'http://localhost:4000'
                 }});

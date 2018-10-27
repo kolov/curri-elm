@@ -6,7 +6,7 @@ import Models exposing (Model, PlayerId)
 import Models exposing (Model)
 import Msgs exposing (Msg)
 import View exposing( page)
-import User exposing( viewUser)
+import User exposing (viewCookiesConsent, viewUser)
 
 
 
@@ -72,6 +72,10 @@ mainView model =
 
 
 
+                  ]
+              , div [class "cookie-consent"]
+                  [
+                    viewCookiesConsent  model.flags.endpoints.users model.user
                   ]
 
 

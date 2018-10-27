@@ -25,6 +25,16 @@ logoutForm origin =
                        button [class "btn btn-outline-success my-2 my-sm-0", onClick Msgs.Logout] [ text "Logout" ]
 
 
+cookieConsentArea: String -> User -> Html Msg
+cookieConsentArea userService user =
+  case user.prefs.acceptsCookies of
+   False -> div [] [
+                    div [] [
+                      text ("Hello, " ++ "You need to accept cookies")]
+--                    , div [] [logoutForm authOrigin]
+                    ]
+   True -> text ""
+
 userArea: String -> User -> Html Msg
 userArea authOrigin user =
   case user.identity of
@@ -50,3 +60,18 @@ viewUser origin user =
 
         RemoteData.Failure error ->
             text ("RemoteData.Failure" ++ (toString error))
+
+viewCookiesConsent : String -> WebData User -> Html Msg
+viewCookiesConsent userService user =
+     case user of
+        RemoteData.NotAsked ->
+            text ""
+
+        RemoteData.Loading ->
+            text "Loading..."
+
+        RemoteData.Success user ->
+            cookieConsentArea userService user
+
+        RemoteData.Failure error ->
+            text "!"
