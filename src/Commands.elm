@@ -10,11 +10,12 @@ import RemoteData
 import Platform.Cmd exposing (batch)
 
 backend : String
-backend = ""
+backend = "http://civi.akolov.com/"
 
 fetchInitialData : Cmd Msg
 fetchInitialData =
-     batch [fetchPlayers, fetchUser]
+     batch [ --fetchPlayers,
+           fetchUser]
 
 fetchPlayers : Cmd Msg
 fetchPlayers =

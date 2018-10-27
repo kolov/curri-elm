@@ -26,14 +26,14 @@ logoutForm origin =
 
 
 userArea: String -> User -> Html Msg
-userArea origin user =
+userArea authOrigin user =
   case user.identity of
    Just identity -> div [] [
                     div [] [
                       text ("Hello, " ++ (Maybe.withDefault  identity.email  identity.givenName))]
-                    , div [] [logoutForm origin]
+                    , div [] [logoutForm authOrigin]
                     ]
-   Nothing -> div [] [loginForm origin]
+   Nothing -> div [] [loginForm authOrigin]
 
 
 viewUser: String -> WebData User -> Html Msg

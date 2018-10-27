@@ -12,5 +12,11 @@ require('./index.html');
 var Elm = require('./Main.elm');
 var mountNode = document.getElementById('main');
 
+var remoteEnd = 'civi.akolov.com';
 // The third value on embed are the initial values for incoming ports into Elm
-var app = Elm.Main.embed(mountNode);
+var app = Elm.Main.embed(mountNode,
+  {'endpoints': { 'login': remote,
+                  'logout': remote,
+                  'users': remote,
+                  'players': 'localhost:4000'
+                }});

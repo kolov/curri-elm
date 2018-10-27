@@ -1,19 +1,28 @@
 module Models exposing (..)
 
+import Dict exposing (Dict)
 import RemoteData exposing (WebData)
 
-
+type alias Flags =
+    {
+        endpoints : {
+          auth: String,
+          users: String
+        }
+    }
 type alias Model =
-    { players : WebData (List Player)
+    { flags: Flags
+    , players : WebData (List Player)
     , route : Route
     , user  : WebData( User)
     , origin : String
     }
 
 
-initialModel : Route -> String -> Model
-initialModel route origin =
-    { players = RemoteData.Loading
+initialModel : Route -> String -> Flags -> Model
+initialModel route origin flags =
+    { flags = flags
+    , players = RemoteData.Loading
     , route = route
     , user  = RemoteData.Loading
     , origin = origin
@@ -34,7 +43,6 @@ type alias Identity =
        ,name: Maybe String
        ,picture: Maybe String
        ,profile: Maybe String
-
     }
 
 

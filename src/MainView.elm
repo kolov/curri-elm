@@ -66,7 +66,7 @@ mainView model =
               , div [ class "form-inline my-2 my-lg-0" ]
                   [
 
-                   viewUser model.origin model.user
+                   viewUser model.flags.endpoints.auth model.user
 --                  Html.form [ action "/service/login", method "post"]
 --                                                          , button [] [ text "Submit" ]
 

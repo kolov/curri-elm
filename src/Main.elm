@@ -1,7 +1,7 @@
 module Main exposing (..)
 
 import Commands exposing (fetchInitialData)
-import Models exposing (Model, initialModel)
+import Models exposing (Flags, Model, initialModel)
 import Msgs exposing (Msg)
 import Navigation exposing (Location)
 import Routing
@@ -9,14 +9,14 @@ import Update exposing (update)
 import MainView exposing (mainView)
 import Debug
 
-init : Location -> ( Model, Cmd Msg )
-init location =
+init : Flags -> Location -> ( Model, Cmd Msg )
+init flags location =
     let
-        currentRoute =
-            Routing.parseLocation location
+        currentRoute = Routing.parseLocation location
         _ = Debug.log (toString currentRoute)
+        _ = Debug.log ("Flags" ++ (toString flags))
     in
-        ( initialModel currentRoute location.origin
+        ( initialModel currentRoute location.origin flags
         , fetchInitialData )
 
 
@@ -29,9 +29,10 @@ subscriptions model =
 -- MAIN
 
 
-main : Program Never Model Msg
+
+main : Program Flags Model Msg
 main =
-    Navigation.program Msgs.OnLocationChange
+    Navigation.programWithFlags Msgs.OnLocationChange
         { init = init
         , view = mainView
         , update = update
