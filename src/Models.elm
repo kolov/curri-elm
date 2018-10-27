@@ -7,7 +7,8 @@ type alias Flags =
     {
         endpoints : {
           auth: String,
-          users: String
+          users: String,
+          players: String
         }
     }
 type alias Model =

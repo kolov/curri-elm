@@ -5,28 +5,28 @@ import Json.Decode as Decode
 import Json.Decode.Pipeline exposing (decode, required, optional)
 import Json.Encode as Encode
 import Msgs exposing (Msg)
-import Models exposing (PlayerId, Player, User, Identity)
+import Models exposing (Flags, Identity, Player, PlayerId, User)
 import RemoteData
 import Platform.Cmd exposing (batch)
 
 backend : String
 backend = "http://civi.akolov.com/"
 
-fetchInitialData : Cmd Msg
-fetchInitialData =
-     batch [ --fetchPlayers,
-           fetchUser backend]
+fetchInitialData : Flags -> Cmd Msg
+fetchInitialData flags =
+     batch [ fetchPlayers flags.endpoints.players,
+           fetchUser flags.endpoints.users]
 
-fetchPlayers : Cmd Msg
-fetchPlayers =
-    Http.get fetchPlayersUrl playersDecoder
+fetchPlayers : String -> Cmd Msg
+fetchPlayers backend =
+    Http.get (backend ++ "/players") playersDecoder
         |> RemoteData.sendRequest
         |> Cmd.map Msgs.OnFetchPlayers
 
 
 fetchUser : String -> Cmd Msg
 fetchUser origin =
-    Http.get (origin ++ "/service/user") userDecoder
+    Http.get (origin ++ "/user") userDecoder
         |> RemoteData.sendRequest
         |> Cmd.map Msgs.OnFetchUser
 
@@ -36,12 +36,6 @@ logoutUser =
     Http.post (backend ++ "/logout") Http.emptyBody Decode.string
         |> RemoteData.sendRequest
         |> Cmd.map Msgs.OnLogout
-
-
-fetchPlayersUrl : String
-fetchPlayersUrl =
-    "http://localhost:4000/players"
-
 
 savePlayerUrl : PlayerId -> String
 savePlayerUrl playerId =

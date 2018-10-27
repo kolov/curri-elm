@@ -17,7 +17,7 @@ update msg model =
             in
             ( { model | players = response }, Cmd.none )
 
-        Msgs.FetchUser  -> (model, (Commands.fetchUser model.flags.endpoints.users))
+        Msgs.FetchUser  -> (model, Commands.fetchUser model.flags.endpoints.users)
 
         Msgs.OnFetchUser response ->
             let

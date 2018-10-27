@@ -17,7 +17,7 @@ init flags location =
         _ = Debug.log ("Flags" ++ (toString flags))
     in
         ( initialModel currentRoute location.origin flags
-        , fetchInitialData )
+        , fetchInitialData flags)
 
 
 subscriptions : Model -> Sub Msg
