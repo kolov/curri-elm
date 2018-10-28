@@ -60,7 +60,7 @@ mainView model =
               , div [class "cookie-consent"]
                   [ viewCookiesConsent model.flags.endpoints.users model.user ]
 
-              , div [ class "modal", attribute "role" "dialog", attribute "tabindex" "-1", id "cookies-consent" ]
+              , div [ class "modal", attribute "role" "dialog", attribute "tabindex" "-1", id "cookies-consent-modal" ]
                  [ div [ class "modal-dialog", attribute "role" "document" ]
                      [ div [ class "modal-content" ]
                          [ div [ class "modal-header" ]

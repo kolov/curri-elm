@@ -48,6 +48,8 @@ update msg model =
         Msgs.Login -> (model,  Navigation.load "/service/login")
         Msgs.Logout  -> (model,  Commands.logoutUser)
         Msgs.OnLogout _ -> (model,  fetchUser model.flags.endpoints.users)
+        Msgs.ShowCookiesConsent -> (model,  Cmd.none)
+        Msgs.HideCookiesConsent -> (model,  Cmd.none)
 
 
 updatePlayer : Model -> Player -> Model

@@ -16,3 +16,4 @@ type Msg
     | OnLocationChange Location
     | ChangeLevel Player Int
     | OnPlayerSave (Result Http.Error Player)
+    | ShowCookiesConsent | HideCookiesConsent

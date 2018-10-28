@@ -10,18 +10,14 @@ import Base64 exposing(..)
 
 
 acceptCookiesForm: String -> Html Msg
-acceptCookiesForm origin = Html.form
-                      [ action (origin ++ "/users/acceptsCookies"  ), method "post" ]
-                      [
---                      input
---                        [  type_ "submit"
---                         , class "btn btn-outline-success my-2 my-sm-0", type_ "submit"
---                         ,  value "Accept cookies"
---                        ] [],
+acceptCookiesForm origin = Html.button
+                      [  class "btn btn-outline-success my-2 my-sm-0"
+                         , attribute "data-toggle" "modal"
+                         , attribute "data-target" "#cookies-consent-modal"
+
+                        ] [text "Show dlg"]
 
 
-
-                      ]
 
 loginForm: String -> Html Msg
 loginForm origin = Html.form
@@ -89,3 +85,4 @@ viewCookiesConsent userService user =
 
         RemoteData.Failure error ->
             text "!"
+
