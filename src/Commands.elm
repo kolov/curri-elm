@@ -26,7 +26,7 @@ fetchPlayers backend =
 
 fetchUser : String -> Cmd Msg
 fetchUser origin =
-    Http.get (origin ++ "/user") userDecoder
+    Http.get (origin ++ "/user-details") userDecoder
         |> RemoteData.sendRequest
         |> Cmd.map Msgs.OnFetchUser
 

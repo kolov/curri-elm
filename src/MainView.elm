@@ -53,35 +53,37 @@ mainView model =
                           [ text "Disabled" ]
                       ]
                   ]
---              , div [ class "form-inline my-2 my-lg-0" ]
---                  [ viewUser model.user
---                  , button [ class "btn btn-outline-success my-2 my-sm-0", type_ "submit" ]
---                      [ button [ onClick Msgs.Login ] [ text "Login" ]]
---
---
---
---
---                  ]
 
               , div [ class "form-inline my-2 my-lg-0" ]
-                  [
+                  [ viewUser model.flags.endpoints.auth model.user ]
 
-                   viewUser model.flags.endpoints.auth model.user
---                  Html.form [ action "/service/login", method "post"]
---                                                          , button [] [ text "Submit" ]
-
-
-
-                  ]
               , div [class "cookie-consent"]
-                  [
-                    viewCookiesConsent  model.flags.endpoints.users model.user
-                  ]
+                  [ viewCookiesConsent model.flags.endpoints.users model.user ]
 
-
-
-
-
+              , div [ class "modal", attribute "role" "dialog", attribute "tabindex" "-1", id "cookies-consent" ]
+                 [ div [ class "modal-dialog", attribute "role" "document" ]
+                     [ div [ class "modal-content" ]
+                         [ div [ class "modal-header" ]
+                             [ h5 [ class "modal-title" ]
+                                 [ text "Modal title" ]
+                             , button [ attribute "aria-label" "Close", class "close", attribute "data-dismiss" "modal", type_ "button" ]
+                                 [ span [ attribute "aria-hidden" "true" ]
+                                     [ text "×" ]
+                                 ]
+                             ]
+                         , div [ class "modal-body" ]
+                             [ p []
+                                 [ text "Modal body text goes here." ]
+                             ]
+                         , div [ class "modal-footer" ]
+                             [ button [ class "btn btn-primary", type_ "button" ]
+                                 [ text "Save changes" ]
+                             , button [ class "btn btn-secondary", attribute "data-dismiss" "modal", type_ "button" ]
+                                 [ text "Close" ]
+                             ]
+                         ]
+                     ]
+                 ]
               ]
           ]
       , div [ class "container" ]

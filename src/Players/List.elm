@@ -36,7 +36,7 @@ maybeList response =
             list players
 
         RemoteData.Failure error ->
-            text (toString error)
+            text "no players service"
 
 
 list : List Player -> Html Msg

@@ -9,6 +9,20 @@ import RemoteData exposing (WebData)
 import Base64 exposing(..)
 
 
+acceptCookiesForm: String -> Html Msg
+acceptCookiesForm origin = Html.form
+                      [ action (origin ++ "/users/acceptsCookies"  ), method "post" ]
+                      [
+--                      input
+--                        [  type_ "submit"
+--                         , class "btn btn-outline-success my-2 my-sm-0", type_ "submit"
+--                         ,  value "Accept cookies"
+--                        ] [],
+
+
+
+                      ]
+
 loginForm: String -> Html Msg
 loginForm origin = Html.form
                       [ action (origin ++ "/login/google/" ++  Base64.encode(origin) ), method "get" ]
@@ -31,9 +45,9 @@ cookieConsentArea userService user =
    False -> div [] [
                     div [] [
                       text ("Hello, " ++ "You need to accept cookies")]
---                    , div [] [logoutForm authOrigin]
+                    , div [] [acceptCookiesForm userService]
                     ]
-   True -> text ""
+   True -> div [] []
 
 userArea: String -> User -> Html Msg
 userArea authOrigin user =
